@@ -55,7 +55,7 @@ public class MouseButtonReleaseAction implements Action { //TODO extract duplica
         JCheckBox middle = new JCheckBox("Middle");
         JCheckBox right = new JCheckBox("Right");
 
-        int choice = JOptionPane.showConfirmDialog(parentComponent, mouseButtonPanel("Choose buttons to release", left, middle, right), parentComponent.getTitle(), 2);
+        int choice = JOptionPane.showConfirmDialog(parentComponent, mouseButtonPanel("Choose buttons to release", left, middle, right), parentComponent.getTitle(), JOptionPane.OK_CANCEL_OPTION);
 
         if (choice == JOptionPane.YES_OPTION) {
             try {
