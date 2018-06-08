@@ -1,6 +1,5 @@
 package uk.co.jpawlak.clicker.gui;
 
-import uk.co.jpawlak.clicker.actions.gui.ActionsManager;
 import uk.co.jpawlak.clicker.threads.StartingWorker;
 import uk.co.jpawlak.clicker.threads.ThreadListener;
 import uk.co.jpawlak.clicker.threads.WorkingThread;

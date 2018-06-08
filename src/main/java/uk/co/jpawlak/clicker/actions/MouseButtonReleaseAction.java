@@ -8,6 +8,8 @@ import java.awt.BorderLayout;
 import java.awt.Frame;
 import java.awt.GridLayout;
 
+import static uk.co.jpawlak.clicker.actions.RobotSingleton.robot;
+
 public class MouseButtonReleaseAction implements Action {
 
     private final int buttons;
@@ -40,7 +42,7 @@ public class MouseButtonReleaseAction implements Action {
     }
 
     public void execute() {
-        robot.mouseRelease(this.buttons);
+        robot().mouseRelease(this.buttons);
     }
 
     public String toString() {
@@ -52,16 +54,13 @@ public class MouseButtonReleaseAction implements Action {
         JCheckBox middle = new JCheckBox("Middle");
         JCheckBox right = new JCheckBox("Right");
 
-        int choice = JOptionPane.showConfirmDialog(parentComponent, mouseButtonPanel("Choose buttons to release", left, middle, right), parentComponent
-                .getTitle(), 2);
+        int choice = JOptionPane.showConfirmDialog(parentComponent, mouseButtonPanel("Choose buttons to release", left, middle, right), parentComponent.getTitle(), 2);
 
-        if (choice == 0) {
-            try {
-                return new MouseButtonReleaseAction(left.isSelected(), middle.isSelected(), right.isSelected());
-            } catch (IllegalArgumentException localIllegalArgumentException) {
-            }
+        if (choice == JOptionPane.YES_OPTION) {
+            return new MouseButtonReleaseAction(left.isSelected(), middle.isSelected(), right.isSelected());
+        } else {
+            return null;
         }
-        return null;
     }
 
     private static JPanel mouseButtonPanel(String text, JCheckBox left, JCheckBox middle, JCheckBox right) {

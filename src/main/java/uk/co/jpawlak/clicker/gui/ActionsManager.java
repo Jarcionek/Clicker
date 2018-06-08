@@ -1,4 +1,4 @@
-package uk.co.jpawlak.clicker.actions.gui;
+package uk.co.jpawlak.clicker.gui;
 
 import uk.co.jpawlak.clicker.actions.Action;
 import uk.co.jpawlak.clicker.actions.Actions;
