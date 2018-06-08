@@ -1,7 +1,7 @@
 package uk.co.jpawlak.clicker.threads;
 
-public abstract interface ThreadListener {
+public interface ThreadListener {
 
-    public abstract void finished();
+    void finished();
 
 }

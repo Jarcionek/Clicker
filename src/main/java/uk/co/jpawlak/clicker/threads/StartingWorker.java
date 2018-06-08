@@ -15,7 +15,7 @@ public class StartingWorker extends SwingWorker {
     }
 
     protected Object doInBackground() throws Exception {
-        Status status = Status.countdown(3);
+        Status status = Status.countdown(WAIT_TIME);
         while ((Status.COUNTDOWN.getTime() >= 0) && (!isCancelled())) {
             this.statusLabel.setStatus(status);
             status.decrement();

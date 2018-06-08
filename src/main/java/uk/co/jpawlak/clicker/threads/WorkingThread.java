@@ -21,7 +21,7 @@ public class WorkingThread extends Thread {
         this.timeModule = timeModule;
         this.actions = actions;
         this.original = timeModule.getMillis();
-        this.listeners = new LinkedList();
+        this.listeners = new LinkedList<>();
     }
 
     public void run() {

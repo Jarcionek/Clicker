@@ -52,8 +52,7 @@ public class MouseButtonPressAction implements Action {
         JCheckBox middle = new JCheckBox("Middle");
         JCheckBox right = new JCheckBox("Right");
 
-        int choice = JOptionPane.showConfirmDialog(parentComponent, mouseButtonPanel("Choose buttons to press", left, middle, right), parentComponent
-                .getTitle(), 2);
+        int choice = JOptionPane.showConfirmDialog(parentComponent, mouseButtonPanel("Choose buttons to press", left, middle, right), parentComponent.getTitle(), 2);
 
         if (choice == 0) {
             try {

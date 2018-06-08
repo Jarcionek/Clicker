@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Actions implements Iterable<Action> {
 
-    private List<Action> actions = new ArrayList();
+    private List<Action> actions = new ArrayList<>();
 
     public void add(Action action) {
         this.actions.add(action);
@@ -24,15 +24,15 @@ public class Actions implements Iterable<Action> {
     }
 
     public Action[] asArray() {
-        return (Action[]) this.actions.toArray(new Action[0]);
+        return this.actions.toArray(new Action[0]);
     }
 
     public void deleteActions(int[] selectedIndices) {
         Action[] array = asArray();
-        for (int selectedIndice : selectedIndices) {
-            array[selectedIndice] = null;
+        for (int selectedIndex : selectedIndices) {
+            array[selectedIndex] = null;
         }
-        this.actions = new ArrayList(this.actions.size() - selectedIndices.length);
+        this.actions = new ArrayList<>(this.actions.size() - selectedIndices.length);
         for (Action action : array) {
             if (action != null) {
                 this.actions.add(action);
@@ -41,12 +41,12 @@ public class Actions implements Iterable<Action> {
     }
 
     public int[] moveUp(int[] selectedIndices) {
-        Action[] array = (Action[]) concatenate(new Action[]{null}, asArray());
+        Action[] array = concatenate(new Action[]{null}, asArray());
         for (int i = 0; i < selectedIndices.length; i++) {
             swap(array, selectedIndices[i] + 1, selectedIndices[i]);
             selectedIndices[i] -= 1;
         }
-        this.actions = new ArrayList(this.actions.size());
+        this.actions = new ArrayList<>(this.actions.size());
         for (Action action : array) {
             if (action != null) {
                 this.actions.add(action);
@@ -56,12 +56,12 @@ public class Actions implements Iterable<Action> {
     }
 
     public int[] moveDown(int[] selectedIndices) {
-        Action[] array = (Action[]) concatenate(asArray(), new Action[]{null});
+        Action[] array = concatenate(asArray(), new Action[]{null});
         for (int i = selectedIndices.length - 1; i >= 0; i--) {
             swap(array, selectedIndices[i], selectedIndices[i] + 1);
             selectedIndices[i] += 1;
         }
-        this.actions = new ArrayList(this.actions.size());
+        this.actions = new ArrayList<>(this.actions.size());
         for (Action action : array) {
             if (action != null) {
                 this.actions.add(action);
@@ -72,8 +72,8 @@ public class Actions implements Iterable<Action> {
 
     public int[] copy(int[] selectedIndices) {
         Action[] array = asArray();
-        for (int selectedIndice : selectedIndices) {
-            this.actions.add(array[selectedIndice]);
+        for (int selectedIndex : selectedIndices) {
+            this.actions.add(array[selectedIndex]);
         }
         int[] newIndices = new int[selectedIndices.length];
         for (int i = 0; i < newIndices.length; i++) {

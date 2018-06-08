@@ -8,7 +8,7 @@ public enum Status {
 
     private int time;
 
-    private Status(int time) {
+    Status(int time) {
         this.time = time;
     }
 
@@ -21,7 +21,7 @@ public enum Status {
         return this.time;
     }
 
-    public Status decrement() {
+    public Status decrement() { //TODO omg! mutable enum!
         this.time -= 1;
         return this;
     }
