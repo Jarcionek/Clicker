@@ -2,6 +2,8 @@ package uk.co.jpawlak.clicker.gui;
 
 import uk.co.jpawlak.clicker.actions.Action;
 import uk.co.jpawlak.clicker.actions.Actions;
+import uk.co.jpawlak.clicker.actions.KeyPressAction;
+import uk.co.jpawlak.clicker.actions.KeyReleaseAction;
 import uk.co.jpawlak.clicker.actions.MouseButtonPressAction;
 import uk.co.jpawlak.clicker.actions.MouseButtonReleaseAction;
 import uk.co.jpawlak.clicker.actions.SleepAction;
@@ -25,6 +27,8 @@ public class ActionsManager extends JPanel {
     private final JButton sleepButton;
     private final JButton mouseButtonPressButton;
     private final JButton mouseButtonReleaseButton;
+    private final JButton keyPressButton;
+    private final JButton keyReleaseButton;
     private final JButton deleteButton;
     private final JButton moveUpButton;
     private final JButton moveDownButton;
@@ -40,6 +44,8 @@ public class ActionsManager extends JPanel {
         this.sleepButton = new JButton("Sleep");
         this.mouseButtonPressButton = new JButton("Press mouse button");
         this.mouseButtonReleaseButton = new JButton("Release mouse button");
+        this.keyPressButton = new JButton("Press key");
+        this.keyReleaseButton = new JButton("Release key");
         this.deleteButton = new JButton("Delete");
         this.moveUpButton = new JButton("Move up");
         this.moveDownButton = new JButton("Move down");
@@ -57,6 +63,8 @@ public class ActionsManager extends JPanel {
         panel.add(this.sleepButton);
         panel.add(this.mouseButtonPressButton);
         panel.add(this.mouseButtonReleaseButton);
+        panel.add(this.keyPressButton);
+        panel.add(this.keyReleaseButton);
 
         JLabel modifyLabel = new JLabel("Modify:");
         modifyLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -89,6 +97,8 @@ public class ActionsManager extends JPanel {
                 ActionsManager.this.addAction(MouseButtonReleaseAction.showPopup(ActionsManager.this.parentComponent));
             }
         });
+        this.keyPressButton.addActionListener(e -> ActionsManager.this.addAction(KeyPressAction.showPopup(ActionsManager.this.parentComponent)));
+        this.keyReleaseButton.addActionListener(e -> ActionsManager.this.addAction(KeyReleaseAction.showPopup(ActionsManager.this.parentComponent)));
         this.deleteButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (ActionsManager.this.list.getSelectedIndices().length > 0) {
