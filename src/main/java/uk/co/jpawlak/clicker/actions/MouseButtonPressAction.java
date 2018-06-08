@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.Frame;
 import java.awt.GridLayout;
+import java.awt.event.InputEvent;
 
 import static uk.co.jpawlak.clicker.actions.RobotSingleton.robot;
 
@@ -23,15 +24,15 @@ public class MouseButtonPressAction implements Action {
         int buttons = 0;
         String text = "";
         if (left) {
-            buttons |= 0x400;
+            buttons |= InputEvent.BUTTON1_DOWN_MASK;
             text = text + "L";
         }
         if (middle) {
-            buttons |= 0x800;
+            buttons |= InputEvent.BUTTON2_DOWN_MASK;
             text = text + "M";
         }
         if (right) {
-            buttons |= 0x1000;
+            buttons |= InputEvent.BUTTON3_DOWN_MASK;
             text = text + "R";
         }
         if (buttons == 0) {
@@ -57,10 +58,13 @@ public class MouseButtonPressAction implements Action {
         int choice = JOptionPane.showConfirmDialog(parentComponent, mouseButtonPanel("Choose buttons to press", left, middle, right), parentComponent.getTitle(), 2);
 
         if (choice == JOptionPane.YES_OPTION) {
-            return new MouseButtonPressAction(left.isSelected(), middle.isSelected(), right.isSelected());
-        } else {
-            return null;
+            try {
+                return new MouseButtonPressAction(left.isSelected(), middle.isSelected(), right.isSelected());
+            } catch (IllegalArgumentException e) {
+                // none of the buttons selected
+            }
         }
+        return null;
     }
 
     private static JPanel mouseButtonPanel(String text, JCheckBox left, JCheckBox middle, JCheckBox right) {
