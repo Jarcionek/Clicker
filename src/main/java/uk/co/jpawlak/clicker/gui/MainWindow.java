@@ -32,6 +32,8 @@ public class MainWindow extends JFrame {
     private WorkingThread working;
 
     public MainWindow() {
+        setTitle("Clicker");
+
         this.timeModule = new TimeModule();
         this.statusLabel = new StatusLabel();
         this.startButton = new JButton("Start");
