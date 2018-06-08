@@ -11,7 +11,7 @@ import java.awt.event.InputEvent;
 
 import static uk.co.jpawlak.clicker.actions.RobotSingleton.robot;
 
-public class MouseButtonReleaseAction implements Action {
+public class MouseButtonReleaseAction implements Action { //TODO extract duplications to super class
 
     private final int buttons;
     private final String text;
@@ -69,13 +69,13 @@ public class MouseButtonReleaseAction implements Action {
 
     private static JPanel mouseButtonPanel(String text, JCheckBox left, JCheckBox middle, JCheckBox right) {
         JPanel panel = new JPanel(new BorderLayout());
-        panel.add(new JLabel(text), "North");
+        panel.add(new JLabel(text), BorderLayout.NORTH);
 
         JPanel boxes = new JPanel(new GridLayout());
         boxes.add(left);
         boxes.add(middle);
         boxes.add(right);
-        panel.add(boxes, "Center");
+        panel.add(boxes, BorderLayout.CENTER);
 
         return panel;
     }

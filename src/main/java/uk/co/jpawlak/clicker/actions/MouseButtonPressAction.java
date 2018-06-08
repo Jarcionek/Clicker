@@ -69,13 +69,13 @@ public class MouseButtonPressAction implements Action {
 
     private static JPanel mouseButtonPanel(String text, JCheckBox left, JCheckBox middle, JCheckBox right) {
         JPanel panel = new JPanel(new BorderLayout());
-        panel.add(new JLabel(text), "North");
+        panel.add(new JLabel(text), BorderLayout.NORTH);
 
         JPanel boxes = new JPanel(new GridLayout());
         boxes.add(left);
         boxes.add(middle);
         boxes.add(right);
-        panel.add(boxes, "Center");
+        panel.add(boxes, BorderLayout.CENTER);
 
         return panel;
     }

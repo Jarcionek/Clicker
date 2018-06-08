@@ -32,10 +32,6 @@ public class NumberField extends JTextField {
         });
     }
 
-    public NumberField() {
-        this(null);
-    }
-
     public long getLong() {
         return getText().length() == 0 ? 0L : Long.parseLong(getText());
     }

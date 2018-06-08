@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingWorker;
+import javax.swing.WindowConstants;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
@@ -30,11 +31,7 @@ public class MainWindow extends JFrame {
     private StartingWorker starting;
     private WorkingThread working;
 
-    public static JFrame mainWindow() {
-        return new MainWindow();
-    }
-
-    private MainWindow() {
+    public MainWindow() {
         this.timeModule = new TimeModule();
         this.statusLabel = new StatusLabel();
         this.startButton = new JButton("Start");
@@ -59,7 +56,7 @@ public class MainWindow extends JFrame {
         });
         setSize(320, 480);
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(3);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
     }
 
@@ -101,16 +98,16 @@ public class MainWindow extends JFrame {
     private void createLayout() {
         JPanel contentPanel = new JPanel(new BorderLayout());
 
-        contentPanel.add(westPanel(), "West");
-        contentPanel.add(this.actionsManager, "Center");
+        contentPanel.add(westPanel(), BorderLayout.WEST);
+        contentPanel.add(this.actionsManager, BorderLayout.CENTER);
 
         setContentPane(contentPanel);
     }
 
     private JPanel westPanel() {
         JPanel panel = new JPanel(new BorderLayout());
-        panel.add(statusTimeAndButtonsPanel(), "North");
-        panel.add(this.actionsManager.getControlPanel(), "South");
+        panel.add(statusTimeAndButtonsPanel(), BorderLayout.NORTH);
+        panel.add(this.actionsManager.getControlPanel(), BorderLayout.SOUTH);
         return panel;
     }
 
@@ -132,14 +129,14 @@ public class MainWindow extends JFrame {
         JPanel panel = new JPanel(new BorderLayout(5, 5));
 
         JPanel labels = new JPanel(new GridLayout(4, 1));
-        panel.add(labels, "West");
+        panel.add(labels, BorderLayout.WEST);
         labels.add(new JLabel("Hours:"));
         labels.add(new JLabel("Minutes:"));
         labels.add(new JLabel("Seconds:"));
         labels.add(new JLabel("Milliseconds:"));
 
         JPanel fields = new JPanel(new GridLayout(4, 1));
-        panel.add(fields, "Center");
+        panel.add(fields, BorderLayout.CENTER);
         fields.add(this.timeModule.getHoursField());
         fields.add(this.timeModule.getMinutesField());
         fields.add(this.timeModule.getSecondsField());
@@ -161,4 +158,5 @@ public class MainWindow extends JFrame {
         panel.add(this.stopButton);
         return panel;
     }
+
 }

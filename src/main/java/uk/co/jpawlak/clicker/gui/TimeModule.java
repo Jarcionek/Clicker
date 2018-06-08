@@ -18,7 +18,7 @@ public class TimeModule {
         this.millisecondsField = new NumberField("0");
         FocusAdapter focusAdapter = new FocusAdapter() {
             public void focusLost(FocusEvent e) {
-                TimeModule.this.setMillis(TimeModule.this.getMillis());
+                TimeModule.this.setMillis(TimeModule.this.getMillis()); // if someone enters 70m, it will change it into 1h10m
             }
         };
         this.hoursField.addFocusListener(focusAdapter);
@@ -53,6 +53,7 @@ public class TimeModule {
         this.hoursField.setText(String.valueOf(time));
     }
 
+    @SuppressWarnings("UnnecessaryLocalVariable")
     public long getMillis() {
         long hours = this.hoursField.getLong();
         long minutes = hours * 60L + this.minutesField.getLong();

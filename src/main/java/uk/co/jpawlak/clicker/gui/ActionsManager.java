@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.SwingConstants;
 import java.awt.Frame;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -51,14 +52,14 @@ public class ActionsManager extends JPanel {
         JPanel panel = new JPanel(new GridLayout(0, 1));
 
         JLabel addLabel = new JLabel("Add:");
-        addLabel.setHorizontalAlignment(0);
+        addLabel.setHorizontalAlignment(SwingConstants.CENTER);
         panel.add(addLabel);
         panel.add(this.sleepButton);
         panel.add(this.mouseButtonPressButton);
         panel.add(this.mouseButtonReleaseButton);
 
         JLabel modifyLabel = new JLabel("Modify:");
-        modifyLabel.setHorizontalAlignment(0);
+        modifyLabel.setHorizontalAlignment(SwingConstants.CENTER);
         panel.add(modifyLabel);
         panel.add(this.deleteButton);
         panel.add(this.moveUpButton);
