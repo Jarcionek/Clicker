@@ -1,18 +1,18 @@
-/*    */ package uk.co.jpawlak.clicker.actions;
-/*    */ 
-/*    */
+package uk.co.jpawlak.clicker.actions;
+
+
 
 import java.awt.*;
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ public abstract interface Action
-/*    */ {
-/* 10 */   public static final Robot robot = ;
-/*    */   
-/*    */   public abstract void execute();
-/*    */ }
+
+
+
+
+public abstract interface Action
+{
+  public static final Robot robot = ;
+
+  public abstract void execute();
+}
 
 
 /* Location:              C:\Users\Jarcionek\Desktop\Clicker.jar!\clicker\actions\Action.class

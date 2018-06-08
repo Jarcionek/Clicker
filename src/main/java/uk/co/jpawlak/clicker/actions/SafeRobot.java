@@ -1,27 +1,27 @@
-/*    */ package uk.co.jpawlak.clicker.actions;
-/*    */ 
-/*    */
+package uk.co.jpawlak.clicker.actions;
+
+
 
 import java.awt.*;
 
-/*    */
-/*    */ 
-/*    */ class SafeRobot extends Robot
-/*    */ {
-/*    */   public static SafeRobot robotOrNull()
-/*    */   {
-/*    */     try
-/*    */     {
-/* 12 */       return new SafeRobot();
-/*    */     } catch (AWTException e) {
-/* 14 */       e.printStackTrace(); }
-/* 15 */     return null;
-/*    */   }
-/*    */   
-/*    */   private SafeRobot()
-/*    */     throws AWTException
-/*    */   {}
-/*    */ }
+
+
+class SafeRobot extends Robot
+{
+  public static SafeRobot robotOrNull()
+  {
+    try
+    {
+      return new SafeRobot();
+    } catch (AWTException e) {
+      e.printStackTrace(); }
+    return null;
+  }
+
+  private SafeRobot()
+    throws AWTException
+  {}
+}
 
 
 /* Location:              C:\Users\Jarcionek\Desktop\Clicker.jar!\clicker\actions\SafeRobot.class
