@@ -4,7 +4,7 @@ import java.awt.Robot;
 
 public abstract interface Action {
 
-    public static final Robot robot = ;
+    public static final Robot robot = SafeRobot.robotOrNull();
 
     public abstract void execute();
 

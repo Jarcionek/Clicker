@@ -1,7 +1,7 @@
 package uk.co.jpawlak.clicker.threads;
 
-import clicker.actions.Actions;
-import clicker.gui.TimeModule;
+import uk.co.jpawlak.clicker.actions.Actions;
+import uk.co.jpawlak.clicker.gui.TimeModule;
 
 import java.util.LinkedList;
 import java.util.List;

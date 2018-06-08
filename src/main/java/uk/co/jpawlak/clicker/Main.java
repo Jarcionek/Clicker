@@ -1,6 +1,6 @@
 package uk.co.jpawlak.clicker;
 
-import clicker.gui.MainWindow;
+import uk.co.jpawlak.clicker.gui.MainWindow;
 
 public class Main {
 

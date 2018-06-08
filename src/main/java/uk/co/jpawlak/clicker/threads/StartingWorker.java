@@ -1,7 +1,7 @@
 package uk.co.jpawlak.clicker.threads;
 
-import clicker.gui.Status;
-import clicker.gui.StatusLabel;
+import uk.co.jpawlak.clicker.gui.Status;
+import uk.co.jpawlak.clicker.gui.StatusLabel;
 
 import javax.swing.SwingWorker;
 
