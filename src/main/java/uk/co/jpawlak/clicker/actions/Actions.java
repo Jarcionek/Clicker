@@ -2,10 +2,9 @@ package uk.co.jpawlak.clicker.actions;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 
-public class Actions implements Iterable<Action> {
+public class Actions {
 
     private List<Action> actions = new ArrayList<>();
 
@@ -19,24 +18,13 @@ public class Actions implements Iterable<Action> {
         }
     }
 
-    public Iterator<Action> iterator() {
-        return this.actions.iterator();
-    }
-
     public Action[] asArray() {
         return this.actions.toArray(new Action[0]);
     }
 
     public void deleteActions(int[] selectedIndices) {
-        Action[] array = asArray();
-        for (int selectedIndex : selectedIndices) {
-            array[selectedIndex] = null;
-        }
-        this.actions = new ArrayList<>(this.actions.size() - selectedIndices.length);
-        for (Action action : array) {
-            if (action != null) {
-                this.actions.add(action);
-            }
+        for (int i = selectedIndices.length - 1; i >= 0; i--) {
+            actions.remove(selectedIndices[i]);
         }
     }
 
