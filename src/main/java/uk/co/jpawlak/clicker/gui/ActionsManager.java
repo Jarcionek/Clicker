@@ -32,13 +32,9 @@ public class ActionsManager extends JPanel {
     private final JButton moveDownButton;
     private final JButton copyButton;
 
-    public ActionsManager(Frame parentComponent) {
+    public ActionsManager(Frame parentComponent, Actions actions) {
         super(new GridLayout(1, 1));
         this.parentComponent = parentComponent;
-
-        Actions actions = new Actions();
-        actions.add(new MouseButtonPressAction(true, false, false));
-        actions.add(new MouseButtonReleaseAction(true, false, false));
         this.list = new ActionsJList(actions);
 
         this.sleepButton = new JButton("Sleep");

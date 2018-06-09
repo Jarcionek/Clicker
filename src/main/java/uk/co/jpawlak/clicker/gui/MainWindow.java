@@ -1,5 +1,6 @@
 package uk.co.jpawlak.clicker.gui;
 
+import uk.co.jpawlak.clicker.actions.Actions;
 import uk.co.jpawlak.clicker.threads.StartingWorker;
 import uk.co.jpawlak.clicker.threads.ThreadListener;
 import uk.co.jpawlak.clicker.threads.WorkingThread;
@@ -31,14 +32,14 @@ public class MainWindow extends JFrame {
     private StartingWorker starting;
     private WorkingThread working;
 
-    public MainWindow() {
+    public MainWindow(Actions actions) {
         setTitle("Clicker");
 
         this.timeModule = new TimeModule();
         this.statusLabel = new StatusLabel();
         this.startButton = new JButton("Start");
         this.stopButton = new JButton("Stop");
-        this.actionsManager = new ActionsManager(this);
+        this.actionsManager = new ActionsManager(this, actions);
 
         this.starting = new StartingWorker(null);
         this.working = WorkingThread.workingThread(this.timeModule, null);
