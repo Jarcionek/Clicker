@@ -45,6 +45,7 @@ public class KeyPressAction implements Action {
         textField.addKeyListener(keyListener);
 
         dialog.setVisible(true);
+        dialog.dispose();
 
         if (chosenKey[0] != null) {
             return new KeyPressAction(chosenKey[0]);

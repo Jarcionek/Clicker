@@ -45,6 +45,7 @@ public class KeyReleaseAction implements Action { //TODO copy-paste of KeyPressA
         textField.addKeyListener(keyListener);
 
         dialog.setVisible(true);
+        dialog.dispose();
 
         if (chosenKey[0] != null) {
             return new KeyReleaseAction(chosenKey[0]);
