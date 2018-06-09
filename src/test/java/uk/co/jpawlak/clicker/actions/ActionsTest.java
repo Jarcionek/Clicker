@@ -8,7 +8,7 @@ import static com.shazam.shazamcrest.matcher.Matchers.sameBeanAs;
 public class ActionsTest {
 
     @Test
-    public void deletesSingleAction() {
+    public void deleteActions_deletesSingleAction() {
         Actions actions = actionsWithElements(0, 1, 2, 3);
 
         actions.deleteActions(new int[] {2});
@@ -17,12 +17,21 @@ public class ActionsTest {
     }
 
     @Test
-    public void deletesMultipleActions() {
+    public void deleteActions_deletesMultipleActions() {
         Actions actions = actionsWithElements(0, 1, 2, 3, 4, 5, 6);
 
         actions.deleteActions(new int[] {0, 3, 6});
 
         assertThat(actions, sameBeanAs(actionsWithElements(1, 2, 4, 5)));
+    }
+
+    @Test
+    public void deleteActions_doesNothingWhenArrayOfIndicesToDeleteIsEmpty() {
+        Actions actions = actionsWithElements(0, 1);
+
+        actions.deleteActions(new int[] {});
+
+        assertThat(actions, sameBeanAs(actionsWithElements(0, 1)));
     }
 
 

@@ -22,13 +22,16 @@ import java.awt.event.ActionListener;
 public class ActionsManager extends JPanel {
 
     private final Frame parentComponent;
+
     private final Actions actions;
     private final JList<Action> list;
+
     private final JButton sleepButton;
     private final JButton mouseButtonPressButton;
     private final JButton mouseButtonReleaseButton;
     private final JButton keyPressButton;
     private final JButton keyReleaseButton;
+
     private final JButton deleteButton;
     private final JButton moveUpButton;
     private final JButton moveDownButton;
@@ -101,10 +104,9 @@ public class ActionsManager extends JPanel {
         this.keyReleaseButton.addActionListener(e -> ActionsManager.this.addAction(KeyReleaseAction.showPopup(ActionsManager.this.parentComponent)));
         this.deleteButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if (ActionsManager.this.list.getSelectedIndices().length > 0) {
-                    ActionsManager.this.actions.deleteActions(ActionsManager.this.list.getSelectedIndices());
-                    ActionsManager.this.refresh();
-                }
+                ActionsManager.this.actions.deleteActions(ActionsManager.this.list.getSelectedIndices());
+                ActionsManager.this.refresh();
+                ActionsManager.this.list.setSelectedIndices(new int[] {});
             }
         });
         this.moveUpButton.addActionListener(new ActionListener() {
