@@ -15,7 +15,7 @@ class RobotSingleton {
         }
     }
 
-    public static Robot robot() {
+    static Robot robot() {
         return robot;
     }
 

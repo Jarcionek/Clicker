@@ -7,11 +7,7 @@ public class SleepAction implements Action {
 
     private final long time;
 
-    public static SleepAction sleep(long time) {
-        return new SleepAction(time);
-    }
-
-    private SleepAction(long time) {
+    public SleepAction(long time) {
         this.time = time;
     }
 
@@ -19,7 +15,7 @@ public class SleepAction implements Action {
         Thread.sleep(this.time);
     }
 
-    public String toString() {
+    public String toString() { //TODO this belongs to the UI
         return "Sleep: " + this.time + "ms";
     }
 

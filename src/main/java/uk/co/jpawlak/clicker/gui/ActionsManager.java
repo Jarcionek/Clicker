@@ -37,8 +37,8 @@ public class ActionsManager extends JPanel {
         this.parentComponent = parentComponent;
 
         Actions actions = new Actions();
-        actions.add(MouseButtonPressAction.press(true, false, false));
-        actions.add(MouseButtonReleaseAction.release(true, false, false));
+        actions.add(new MouseButtonPressAction(true, false, false));
+        actions.add(new MouseButtonReleaseAction(true, false, false));
         this.list = new ActionsJList(actions);
 
         this.sleepButton = new JButton("Sleep");
