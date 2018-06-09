@@ -1,8 +1,11 @@
 package uk.co.jpawlak.clicker.actions;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+
+import static java.util.Arrays.copyOf;
+import static java.util.Arrays.stream;
+import static java.util.stream.Collectors.toList;
 
 public class Actions {
 
@@ -29,18 +32,15 @@ public class Actions {
     }
 
     public int[] moveUp(int[] selectedIndices) {
-        Action[] array = concatenate(new Action[]{null}, asArray());
-        for (int i = 0; i < selectedIndices.length; i++) {
-            swap(array, selectedIndices[i] + 1, selectedIndices[i]);
-            selectedIndices[i] -= 1;
+        List<Action> selectedActions = stream(selectedIndices).mapToObj(actions::get).collect(toList());
+
+        actions.add(0, null);
+        for (int selectedIndex : selectedIndices) {
+            swap(actions, selectedIndex + 1, selectedIndex);
         }
-        this.actions = new ArrayList<>(this.actions.size());
-        for (Action action : array) {
-            if (action != null) {
-                this.actions.add(action);
-            }
-        }
-        return selectedIndices;
+        actions.remove(null);
+
+        return selectedActions.stream().mapToInt(actions::indexOf).toArray();
     }
 
     public int[] moveDown(int[] selectedIndices) {
@@ -70,6 +70,12 @@ public class Actions {
         return newIndices;
     }
 
+    private static <T> void swap(List<T> list, int index, int index2) {
+        T t = list.get(index);
+        list.set(index, list.get(index2));
+        list.set(index2, t);
+    }
+
     private static void swap(Object[] array, int index, int index2) {
         Object t = array[index];
         array[index] = array[index2];
@@ -77,7 +83,7 @@ public class Actions {
     }
 
     private static <T> T[] concatenate(T[] first, T[] second) {
-        T[] result = Arrays.copyOf(first, first.length + second.length);
+        T[] result = copyOf(first, first.length + second.length);
         System.arraycopy(second, 0, result, first.length, second.length);
         return result;
     }

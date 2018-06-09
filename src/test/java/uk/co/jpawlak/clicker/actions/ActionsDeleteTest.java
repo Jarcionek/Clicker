@@ -4,43 +4,36 @@ import org.junit.Test;
 
 import static com.shazam.shazamcrest.MatcherAssert.assertThat;
 import static com.shazam.shazamcrest.matcher.Matchers.sameBeanAs;
+import static uk.co.jpawlak.clicker.actions.FakeAction.actionsWithElements;
+import static uk.co.jpawlak.clicker.actions.FakeAction.indices;
 
-public class ActionsTest {
+public class ActionsDeleteTest {
 
     @Test
-    public void deleteActions_deletesSingleAction() {
+    public void deletesSingleAction() {
         Actions actions = actionsWithElements(0, 1, 2, 3);
 
-        actions.deleteActions(new int[] {2});
+        actions.deleteActions(indices(2));
 
         assertThat(actions, sameBeanAs(actionsWithElements(0, 1, 3)));
     }
 
     @Test
-    public void deleteActions_deletesMultipleActions() {
+    public void deletesMultipleActions() {
         Actions actions = actionsWithElements(0, 1, 2, 3, 4, 5, 6);
 
-        actions.deleteActions(new int[] {0, 3, 6});
+        actions.deleteActions(indices(0, 3, 6));
 
         assertThat(actions, sameBeanAs(actionsWithElements(1, 2, 4, 5)));
     }
 
     @Test
-    public void deleteActions_doesNothingWhenArrayOfIndicesToDeleteIsEmpty() {
+    public void doesNothingWhenArrayOfIndicesToDeleteIsEmpty() {
         Actions actions = actionsWithElements(0, 1);
 
-        actions.deleteActions(new int[] {});
+        actions.deleteActions(indices());
 
         assertThat(actions, sameBeanAs(actionsWithElements(0, 1)));
-    }
-
-
-    private static Actions actionsWithElements(int... elementsNames) {
-        Actions actions = new Actions();
-        for (int elementName : elementsNames) {
-            actions.add(new FakeAction(String.valueOf(elementName)));
-        }
-        return actions;
     }
 
 }
