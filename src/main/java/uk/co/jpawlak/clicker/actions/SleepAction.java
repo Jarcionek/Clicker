@@ -15,11 +15,8 @@ public class SleepAction implements Action {
         this.time = time;
     }
 
-    public void execute() {
-        try {
-            Thread.sleep(this.time);
-        } catch (InterruptedException localInterruptedException) {
-        }
+    public void execute() throws InterruptedException {
+        Thread.sleep(this.time);
     }
 
     public String toString() {

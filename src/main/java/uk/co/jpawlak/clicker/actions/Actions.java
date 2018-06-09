@@ -13,7 +13,7 @@ public class Actions implements Iterable<Action> {
         this.actions.add(action);
     }
 
-    public void execute() {
+    public void execute() throws InterruptedException {
         for (Action action : this.actions) {
             action.execute();
         }

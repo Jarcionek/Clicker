@@ -28,7 +28,11 @@ public class WorkingThread extends Thread {
         long end = now() + this.timeModule.getMillis();
         while ((now() < end) && (!isInterrupted())) {
             this.timeModule.setMillis(end - now());
-            this.actions.execute();
+            try {
+                this.actions.execute();
+            } catch (InterruptedException e) {
+                break;
+            }
         }
         this.timeModule.setMillis(this.original);
         for (ThreadListener listener : this.listeners) {
