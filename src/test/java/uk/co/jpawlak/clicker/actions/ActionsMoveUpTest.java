@@ -55,7 +55,7 @@ public class ActionsMoveUpTest {
     }
 
     @Test
-    public void doesNotLoseSelectionOfTheTopActionsWhenMovingMultipleActions() {
+    public void doesNotLoseSelectionOfTheTopActionsWhenMovingUpMultipleActions() {
         Actions actions = actionsWithElements(0, 1, 2, 3, 4, 5, 6);
 
         int[] newIndices = actions.moveUp(indices(0, 1, 4, 6));
