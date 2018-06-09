@@ -8,8 +8,13 @@ import uk.co.jpawlak.clicker.threads.WorkingThread;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
+import javax.swing.UIManager;
 import javax.swing.WindowConstants;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -44,6 +49,7 @@ public class MainWindow extends JFrame {
         this.starting = new StartingWorker(null);
         this.working = WorkingThread.workingThread(this.timeModule, null);
 
+        createMenuBar();
         customiseComponents();
         createLayout();
 
@@ -61,6 +67,30 @@ public class MainWindow extends JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setVisible(true);
+    }
+
+    private void createMenuBar() {
+        JMenuBar menuBar = new JMenuBar();
+        setJMenuBar(menuBar);
+
+        JMenu lookAndFeel = new JMenu("Look and Feel");
+        menuBar.add(lookAndFeel);
+
+        for (UIManager.LookAndFeelInfo lookAndFeelInfo : UIManager.getInstalledLookAndFeels()) {
+            JMenuItem menuItem = new JMenuItem(lookAndFeelInfo.getName());
+            lookAndFeel.add(menuItem);
+            menuItem.addActionListener(e -> {
+                MainWindow.this.starting.cancel(true);
+                MainWindow.this.working.interrupt();
+                MainWindow.this.dispose();
+                try {
+                    UIManager.setLookAndFeel(lookAndFeelInfo.getClassName());
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
+                SwingUtilities.invokeLater(() -> new MainWindow(actionsManager.getActions()));
+            });
+        }
     }
 
     private void customiseComponents() {
