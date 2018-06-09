@@ -26,7 +26,7 @@ public class SleepAction implements Action {
     public static SleepAction showPopup(Frame parentComponent) {
         String input;
         do {
-            input = JOptionPane.showInputDialog(parentComponent, "Enter wait time (milliseconds)", parentComponent.getTitle(), -1);
+            input = JOptionPane.showInputDialog(parentComponent, "Enter wait time (milliseconds)", parentComponent.getTitle(), JOptionPane.PLAIN_MESSAGE);
         } while ((input != null) && (!isLong(input)));
         return input == null ? null : new SleepAction(Long.parseLong(input));
     }
