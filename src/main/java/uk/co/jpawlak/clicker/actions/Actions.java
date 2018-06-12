@@ -37,29 +37,31 @@ public class Actions {
     public int[] moveUp(int[] selectedIndices) {
         validate(selectedIndices);
 
-        List<Action> selectedActions = stream(selectedIndices).mapToObj(actions::get).collect(toList());
+        int[] newIndices = Arrays.copyOf(selectedIndices, selectedIndices.length);
 
-        actions.add(0, null);
-        for (int selectedIndex : selectedIndices) {
-            swap(actions, selectedIndex);
+        for (int i = 0; i < selectedIndices.length; i++) {
+            if (selectedIndices[i] != i) {
+                swap(actions, selectedIndices[i], selectedIndices[i] - 1);
+                newIndices[i]--;
+            }
         }
-        actions.remove(null);
 
-        return selectedActions.stream().mapToInt(actions::indexOf).toArray();
+        return newIndices;
     }
 
     public int[] moveDown(int[] selectedIndices) {
         validate(selectedIndices);
 
-        List<Action> selectedActions = stream(selectedIndices).mapToObj(actions::get).collect(toList());
+        int[] newIndices = Arrays.copyOf(selectedIndices, selectedIndices.length);
 
-        actions.add(null);
         for (int i = selectedIndices.length - 1; i >= 0; i--) {
-            swap(actions, selectedIndices[i]);
+            if (selectedIndices[i] != i + (actions.size() - selectedIndices.length)) {
+                swap(actions, selectedIndices[i], selectedIndices[i] + 1);
+                newIndices[i]++;
+            }
         }
-        actions.remove(null);
 
-        return selectedActions.stream().mapToInt(actions::indexOf).toArray();
+        return newIndices;
     }
 
     public int[] copy(int[] selectedIndices) {
@@ -81,10 +83,10 @@ public class Actions {
         }
     }
 
-    private static <T> void swap(List<T> list, int index) {
-        T t = list.get(index);
-        list.set(index, list.get(index + 1));
-        list.set(index + 1, t);
+    private static <T> void swap(List<T> list, int index1, int index2) {
+        T t = list.get(index1);
+        list.set(index1, list.get(index2));
+        list.set(index2, t);
     }
 
 }

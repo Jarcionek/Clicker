@@ -12,6 +12,10 @@ public class FakeAction implements Action {
     @Override
     public void execute() {}
 
+    @Override
+    public String toString() {
+        return name;
+    }
 
     static Actions actionsWithElements(int... elementsNames) {
         Actions actions = new Actions();
