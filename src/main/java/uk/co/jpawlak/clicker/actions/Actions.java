@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
-
-import static java.util.Arrays.stream;
-import static java.util.stream.Collectors.toList;
+import java.util.stream.Stream;
 
 public class Actions {
 
@@ -16,14 +14,14 @@ public class Actions {
         this.actions.add(action);
     }
 
+    public Stream<Action> stream() {
+        return actions.stream();
+    }
+
     public void execute() throws InterruptedException {
         for (Action action : this.actions) {
             action.execute();
         }
-    }
-
-    public Action[] asArray() {
-        return this.actions.toArray(new Action[0]);
     }
 
     public void deleteActions(int[] selectedIndices) {
