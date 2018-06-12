@@ -19,42 +19,37 @@ public class ActionsJList extends JList<Action> {
     }
 
     void addAction(Action action) {
-        if (action != null) {
-            this.actions.add(action);
-            int[] selectedIndices = getSelectedIndices();
-            setListData(actions.asArray());
-            setSelectedIndices(selectedIndices);
+        if (action == null) {
+            return;
         }
+        actions.add(action);
+        int[] selectedIndices = getSelectedIndices();
+        setListData(actions.asArray());
+        setSelectedIndices(selectedIndices);
     }
 
     void deleteActions() {
         actions.deleteActions(getSelectedIndices());
         setListData(actions.asArray());
-        setSelectedIndices(new int[] {});
+        setSelectedIndices(new int[]{});
     }
 
     void moveUp() {
-        if (getSelectedIndices().length > 0) {
-            int[] newIndices = actions.moveUp(getSelectedIndices());
-            setListData(actions.asArray());
-            setSelectedIndices(newIndices);
-        }
+        int[] newIndices = actions.moveUp(getSelectedIndices());
+        setListData(actions.asArray());
+        setSelectedIndices(newIndices);
     }
 
     void moveDown() {
-        if (getSelectedIndices().length > 0) {
-            int[] newIndices = actions.moveDown(getSelectedIndices());
-            setListData(actions.asArray());
-            setSelectedIndices(newIndices);
-        }
+        int[] newIndices = actions.moveDown(getSelectedIndices());
+        setListData(actions.asArray());
+        setSelectedIndices(newIndices);
     }
 
     void copy() {
-        if (getSelectedIndices().length > 0) {
-            int[] newIndices = actions.copy(getSelectedIndices());
-            setListData(actions.asArray());
-            setSelectedIndices(newIndices);
-        }
+        int[] newIndices = actions.copy(getSelectedIndices());
+        setListData(actions.asArray());
+        setSelectedIndices(newIndices);
     }
 
 }
