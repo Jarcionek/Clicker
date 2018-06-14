@@ -1,8 +1,8 @@
 package uk.co.jpawlak.clicker.gui;
 
 import uk.co.jpawlak.clicker.actions.Actions;
-import uk.co.jpawlak.clicker.actions.KeyPressAction;
-import uk.co.jpawlak.clicker.actions.KeyReleaseAction;
+import uk.co.jpawlak.clicker.gui.action.KeyPressActionCreator;
+import uk.co.jpawlak.clicker.gui.action.KeyReleaseActionCreator;
 import uk.co.jpawlak.clicker.gui.action.MouseButtonPressActionCreator;
 import uk.co.jpawlak.clicker.gui.action.MouseButtonReleaseActionCreator;
 import uk.co.jpawlak.clicker.gui.action.SleepActionCreator;
@@ -35,6 +35,8 @@ public class ActionsManager extends JPanel {
     private final SleepActionCreator sleepActionCreator = new SleepActionCreator();
     private final MouseButtonPressActionCreator mouseButtonPressActionCreator = new MouseButtonPressActionCreator();
     private final MouseButtonReleaseActionCreator mouseButtonReleaseActionCreator = new MouseButtonReleaseActionCreator();
+    private final KeyPressActionCreator keyPressActionCreator = new KeyPressActionCreator();
+    private final KeyReleaseActionCreator keyReleaseActionCreator = new KeyReleaseActionCreator();
 
     public ActionsManager(Frame parentComponent, Actions actions) {
         super(new GridLayout(1, 1));
@@ -87,8 +89,8 @@ public class ActionsManager extends JPanel {
         sleepButton.addActionListener(e -> list.addAction(sleepActionCreator.create(parentComponent)));
         mouseButtonPressButton.addActionListener(e -> list.addAction(mouseButtonPressActionCreator.create(parentComponent)));
         mouseButtonReleaseButton.addActionListener(e -> list.addAction(mouseButtonReleaseActionCreator.create(parentComponent)));
-        keyPressButton.addActionListener(e -> list.addAction(KeyPressAction.showPopup(parentComponent)));
-        keyReleaseButton.addActionListener(e -> list.addAction(KeyReleaseAction.showPopup(parentComponent)));
+        keyPressButton.addActionListener(e -> list.addAction(keyPressActionCreator.create(parentComponent)));
+        keyReleaseButton.addActionListener(e -> list.addAction(keyReleaseActionCreator.create(parentComponent)));
 
         deleteButton.addActionListener(e -> list.deleteActions());
         moveUpButton.addActionListener(e -> list.moveUp());

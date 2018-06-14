@@ -8,7 +8,6 @@ import static uk.co.jpawlak.clicker.actions.RobotSingleton.robot;
 
 public abstract class AbstractMouseButtonAction implements Action {
 
-
     private final boolean left;
     private final boolean middle;
     private final boolean right;

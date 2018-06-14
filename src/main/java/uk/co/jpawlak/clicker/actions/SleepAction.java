@@ -8,12 +8,12 @@ public class SleepAction implements Action {
         this.time = time;
     }
 
-    public long getTime() {
-        return time;
-    }
-
     public void execute() throws InterruptedException {
         Thread.sleep(this.time);
+    }
+
+    public long getTime() {
+        return time;
     }
 
 }
