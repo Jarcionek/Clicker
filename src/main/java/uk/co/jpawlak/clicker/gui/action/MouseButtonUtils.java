@@ -1,6 +1,7 @@
 package uk.co.jpawlak.clicker.gui.action;
 
 import uk.co.jpawlak.clicker.actions.AbstractMouseButtonAction;
+import uk.co.jpawlak.clicker.actions.Action;
 
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
@@ -9,7 +10,6 @@ import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.Frame;
 import java.awt.GridLayout;
-import java.util.Optional;
 
 class MouseButtonUtils {
 
@@ -30,7 +30,7 @@ class MouseButtonUtils {
         return text;
     }
 
-    static Optional<boolean[]> buttonsFromPopup(Frame parentComponent, String actionWord) {
+    static Action createActionFromPopup(Frame parentComponent, String actionWord, MouseButtonConstructorFunction constructor) {
         JCheckBox left = new JCheckBox("Left");
         JCheckBox middle = new JCheckBox("Middle");
         JCheckBox right = new JCheckBox("Right");
@@ -38,9 +38,9 @@ class MouseButtonUtils {
         int choice = JOptionPane.showConfirmDialog(parentComponent, mouseButtonPanel("Choose buttons to " + actionWord + ":", left, middle, right), parentComponent.getTitle(), JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 
         if (choice == JOptionPane.YES_OPTION && (left.isSelected() || middle.isSelected() || right.isSelected())) {
-            return Optional.of(new boolean[] {left.isSelected(), middle.isSelected(), right.isSelected()});
+            return constructor.invoke(left.isSelected(), middle.isSelected(), right.isSelected());
         }
-        return Optional.empty();
+        return null;
     }
 
     private static JPanel mouseButtonPanel(String text, JCheckBox left, JCheckBox middle, JCheckBox right) {
