@@ -3,8 +3,8 @@ package uk.co.jpawlak.clicker.gui;
 import uk.co.jpawlak.clicker.actions.Actions;
 import uk.co.jpawlak.clicker.actions.KeyPressAction;
 import uk.co.jpawlak.clicker.actions.KeyReleaseAction;
-import uk.co.jpawlak.clicker.actions.MouseButtonPressAction;
-import uk.co.jpawlak.clicker.actions.MouseButtonReleaseAction;
+import uk.co.jpawlak.clicker.gui.action.MouseButtonPressActionCreator;
+import uk.co.jpawlak.clicker.gui.action.MouseButtonReleaseActionCreator;
 import uk.co.jpawlak.clicker.gui.action.SleepActionCreator;
 
 import javax.swing.JButton;
@@ -33,6 +33,8 @@ public class ActionsManager extends JPanel {
     private final JButton copyButton;
 
     private final SleepActionCreator sleepActionCreator = new SleepActionCreator();
+    private final MouseButtonPressActionCreator mouseButtonPressActionCreator = new MouseButtonPressActionCreator();
+    private final MouseButtonReleaseActionCreator mouseButtonReleaseActionCreator = new MouseButtonReleaseActionCreator();
 
     public ActionsManager(Frame parentComponent, Actions actions) {
         super(new GridLayout(1, 1));
@@ -83,8 +85,8 @@ public class ActionsManager extends JPanel {
 
     private void addActionListenersToButtons() {
         sleepButton.addActionListener(e -> list.addAction(sleepActionCreator.create(parentComponent)));
-        mouseButtonPressButton.addActionListener(e -> list.addAction(MouseButtonPressAction.showPopup(parentComponent)));
-        mouseButtonReleaseButton.addActionListener(e -> list.addAction(MouseButtonReleaseAction.showPopup(parentComponent)));
+        mouseButtonPressButton.addActionListener(e -> list.addAction(mouseButtonPressActionCreator.create(parentComponent)));
+        mouseButtonReleaseButton.addActionListener(e -> list.addAction(mouseButtonReleaseActionCreator.create(parentComponent)));
         keyPressButton.addActionListener(e -> list.addAction(KeyPressAction.showPopup(parentComponent)));
         keyReleaseButton.addActionListener(e -> list.addAction(KeyReleaseAction.showPopup(parentComponent)));
 
