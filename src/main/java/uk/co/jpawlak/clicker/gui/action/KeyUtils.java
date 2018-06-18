@@ -1,8 +1,9 @@
 package uk.co.jpawlak.clicker.gui.action;
 
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import java.awt.Frame;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -16,9 +17,10 @@ class KeyUtils {
     }
 
     static Optional<KeyEvent> keyEventFromPopup(Frame parentComponent) { //TODO this code below is terrible...
-        JTextField textField = new JTextField();
+        JLabel label = new JLabel("Press a key");
+        label.setHorizontalAlignment(SwingConstants.CENTER);
 
-        JOptionPane pane = new JOptionPane(textField, JOptionPane.PLAIN_MESSAGE, JOptionPane.DEFAULT_OPTION, null, new Object[]{});
+        JOptionPane pane = new JOptionPane(label, JOptionPane.PLAIN_MESSAGE, JOptionPane.DEFAULT_OPTION, null, new Object[]{});
 
         JDialog dialog = pane.createDialog(parentComponent, parentComponent.getTitle());
 
@@ -31,7 +33,7 @@ class KeyUtils {
                 dialog.setVisible(false);
             }
         };
-        textField.addKeyListener(keyListener);
+        dialog.addKeyListener(keyListener);
 
         dialog.setVisible(true);
         dialog.dispose();
