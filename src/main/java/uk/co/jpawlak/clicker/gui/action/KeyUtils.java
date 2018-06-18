@@ -7,8 +7,8 @@ import javax.swing.SwingConstants;
 import java.awt.Frame;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicReference;
 
 class KeyUtils {
 
@@ -16,7 +16,7 @@ class KeyUtils {
         return KeyEvent.getKeyText(keyEvent.getKeyCode());
     }
 
-    static Optional<KeyEvent> keyEventFromPopup(Frame parentComponent) { //TODO this code below is terrible...
+    static Optional<KeyEvent> keyEventFromPopup(Frame parentComponent) {
         JLabel label = new JLabel("Press a key");
         label.setHorizontalAlignment(SwingConstants.CENTER);
 
@@ -24,21 +24,20 @@ class KeyUtils {
 
         JDialog dialog = pane.createDialog(parentComponent, parentComponent.getTitle());
 
-        KeyEvent[] chosenKey = {null};
+        AtomicReference<KeyEvent> chosenKey = new AtomicReference<>();
 
-        KeyListener keyListener = new KeyAdapter() {
+        dialog.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
-                chosenKey[0] = e;
+                chosenKey.set(e);
                 dialog.setVisible(false);
             }
-        };
-        dialog.addKeyListener(keyListener);
+        });
 
         dialog.setVisible(true);
         dialog.dispose();
 
-        return Optional.ofNullable(chosenKey[0]);
+        return Optional.ofNullable(chosenKey.get());
     }
 
 }
