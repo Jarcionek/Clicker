@@ -6,6 +6,7 @@ import uk.co.jpawlak.clicker.actions.KeyPressAction;
 import uk.co.jpawlak.clicker.actions.KeyReleaseAction;
 import uk.co.jpawlak.clicker.actions.MouseButtonPressAction;
 import uk.co.jpawlak.clicker.actions.MouseButtonReleaseAction;
+import uk.co.jpawlak.clicker.actions.MouseMoveAction;
 import uk.co.jpawlak.clicker.actions.SleepAction;
 
 import static uk.co.jpawlak.clicker.gui.action.KeyUtils.keyEventAsText;
@@ -24,12 +25,15 @@ public class ActionsMapper {
             return "Press buttons: " + mouseButtonsAsText((MouseButtonPressAction) action);
         } else if (action instanceof MouseButtonReleaseAction) {
             return "Release buttons: " + mouseButtonsAsText((MouseButtonReleaseAction) action);
+        } else if (action instanceof MouseMoveAction) {
+            return "Move mouse to: (" + ((MouseMoveAction) action).getX() + "," + ((MouseMoveAction) action).getY() + ")";
         } else if (action instanceof KeyPressAction) {
             return "Press key: " + keyEventAsText(((KeyPressAction) action).getKey());
         } else if (action instanceof KeyReleaseAction) {
             return "Release key: " + keyEventAsText(((KeyReleaseAction) action).getKey());
+        } else {
+            throw new UnsupportedOperationException("should never happen");
         }
-        throw new UnsupportedOperationException("should never happen");
     }
 
 }

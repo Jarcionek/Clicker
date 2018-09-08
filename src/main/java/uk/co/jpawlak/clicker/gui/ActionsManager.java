@@ -5,6 +5,7 @@ import uk.co.jpawlak.clicker.gui.action.KeyPressActionCreator;
 import uk.co.jpawlak.clicker.gui.action.KeyReleaseActionCreator;
 import uk.co.jpawlak.clicker.gui.action.MouseButtonPressActionCreator;
 import uk.co.jpawlak.clicker.gui.action.MouseButtonReleaseActionCreator;
+import uk.co.jpawlak.clicker.gui.action.MouseMoveActionCreator;
 import uk.co.jpawlak.clicker.gui.action.SleepActionCreator;
 
 import javax.swing.JButton;
@@ -24,6 +25,7 @@ public class ActionsManager extends JPanel {
     private final JButton sleepButton;
     private final JButton mouseButtonPressButton;
     private final JButton mouseButtonReleaseButton;
+    private final JButton mouseMoveButton;
     private final JButton keyPressButton;
     private final JButton keyReleaseButton;
 
@@ -35,6 +37,7 @@ public class ActionsManager extends JPanel {
     private final SleepActionCreator sleepActionCreator = new SleepActionCreator();
     private final MouseButtonPressActionCreator mouseButtonPressActionCreator = new MouseButtonPressActionCreator();
     private final MouseButtonReleaseActionCreator mouseButtonReleaseActionCreator = new MouseButtonReleaseActionCreator();
+    private final MouseMoveActionCreator mouseMoveActionCreator = new MouseMoveActionCreator();
     private final KeyPressActionCreator keyPressActionCreator = new KeyPressActionCreator();
     private final KeyReleaseActionCreator keyReleaseActionCreator = new KeyReleaseActionCreator();
 
@@ -46,6 +49,7 @@ public class ActionsManager extends JPanel {
         this.sleepButton = new JButton("Sleep");
         this.mouseButtonPressButton = new JButton("Press mouse button");
         this.mouseButtonReleaseButton = new JButton("Release mouse button");
+        this.mouseMoveButton = new JButton("Move mouse pointer");
         this.keyPressButton = new JButton("Press key");
         this.keyReleaseButton = new JButton("Release key");
 
@@ -67,6 +71,7 @@ public class ActionsManager extends JPanel {
         panel.add(sleepButton);
         panel.add(mouseButtonPressButton);
         panel.add(mouseButtonReleaseButton);
+        panel.add(mouseMoveButton);
         panel.add(keyPressButton);
         panel.add(keyReleaseButton);
 
@@ -89,6 +94,7 @@ public class ActionsManager extends JPanel {
         sleepButton.addActionListener(e -> list.addAction(sleepActionCreator.create(parentComponent)));
         mouseButtonPressButton.addActionListener(e -> list.addAction(mouseButtonPressActionCreator.create(parentComponent)));
         mouseButtonReleaseButton.addActionListener(e -> list.addAction(mouseButtonReleaseActionCreator.create(parentComponent)));
+        mouseMoveButton.addActionListener(e -> list.addAction(mouseMoveActionCreator.create(parentComponent)));
         keyPressButton.addActionListener(e -> list.addAction(keyPressActionCreator.create(parentComponent)));
         keyReleaseButton.addActionListener(e -> list.addAction(keyReleaseActionCreator.create(parentComponent)));
 
