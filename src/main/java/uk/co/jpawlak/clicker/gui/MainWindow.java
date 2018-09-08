@@ -55,6 +55,7 @@ public class MainWindow extends JFrame {
 
         addWindowListener(new WindowAdapter() {
             public void windowActivated(WindowEvent e) {
+                System.out.println("Window activated");
                 MainWindow.this.starting.cancel(true);
                 MainWindow.this.working.interrupt();
                 MainWindow.this.timeModule.setEnabled(true);

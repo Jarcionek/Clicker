@@ -15,10 +15,10 @@ import static uk.co.jpawlak.clicker.gui.action.MouseButtonUtils.mouseButtonsAsTe
 public class ActionsMapper {
 
     public String[] convert(Actions actions) {
-        return actions.stream().map(this::convert).toArray(String[]::new);
+        return actions.stream().map(ActionsMapper::convert).toArray(String[]::new);
     }
 
-    private String convert(Action action) {
+    public static String convert(Action action) {
         if (action instanceof SleepAction) {
             return "Sleep: " + ((SleepAction) action).getTime() + "ms";
         } else if (action instanceof MouseButtonPressAction) {

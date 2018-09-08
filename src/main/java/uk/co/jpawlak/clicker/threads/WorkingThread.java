@@ -27,13 +27,20 @@ public class WorkingThread extends Thread {
     public void run() {
         long end = now() + this.timeModule.getMillis();
         while ((now() < end) && (!isInterrupted())) {
+            System.out.println("Starting a new run");
             this.timeModule.setMillis(end - now());
             try {
                 this.actions.execute();
             } catch (InterruptedException e) {
+                System.out.println("InterruptedException thrown: " + e.getMessage());
                 break;
             }
+            System.out.println("Finished a run");
         }
+        System.out.println("FINISHED!!!");
+        System.out.println("now() = " + now());
+        System.out.println("end = " + end);
+        System.out.println("isInterrupted() = " + isInterrupted());
         this.timeModule.setMillis(this.original);
         for (ThreadListener listener : this.listeners) {
             listener.finished();

@@ -1,5 +1,7 @@
 package uk.co.jpawlak.clicker.actions;
 
+import uk.co.jpawlak.clicker.gui.action.ActionsMapper;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -20,7 +22,9 @@ public class Actions {
 
     public void execute() throws InterruptedException {
         for (Action action : this.actions) {
+            System.out.println("Executing " + ActionsMapper.convert(action));
             action.execute();
+            System.out.println("Executed " + ActionsMapper.convert(action));
         }
     }
 
