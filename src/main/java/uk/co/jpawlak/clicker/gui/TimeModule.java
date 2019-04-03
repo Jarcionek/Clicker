@@ -14,7 +14,7 @@ public class TimeModule {
     public TimeModule() {
         this.hoursField = new NumberField("0");
         this.minutesField = new NumberField("0");
-        this.secondsField = new NumberField("0");
+        this.secondsField = new NumberField("1");
         this.millisecondsField = new NumberField("0");
         FocusAdapter focusAdapter = new FocusAdapter() {
             public void focusLost(FocusEvent e) {
